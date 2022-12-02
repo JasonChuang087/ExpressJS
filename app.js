@@ -6,6 +6,22 @@ const port = process.env.PORT || 3000
 // 設定靜態資源 or middleware 
 app.use(express.static('./static'))
 
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "user",
+    password: "password",
+    database: "test"
+  });
+  
+  con.connect(function(err) {
+    if (err) throw err;
+    con.query("SELECT * FROM users", function (err, result, fields) {
+      if (err) throw err;
+      console.log(result);
+    });
+  });
+
+var mysql = require('mysql');
 
 app.get('/',(req,res)=>{
     console.log('hit')
@@ -13,6 +29,10 @@ app.get('/',(req,res)=>{
 })
 
 app.get('/hello',(req,res)=>{
+    res.status(200).send('Hello world')
+})
+
+app.get('/user/',(req,res)=>{
     res.status(200).send('Hello world')
 })
 
