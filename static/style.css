@@ -1,0 +1,140 @@
+body{
+    font-family: 'Times New Roman', Times, serif;
+    margin:0%;
+}
+
+#top-nav {
+    position: fixed;
+    width:100vw;/*view width 螢幕可視範圍寬度的百分比 vh亦然*/
+    height: 50px;
+    background-color: beige;
+}
+
+#head-title {
+    display: inline;
+    font-size: 1.25rem;
+    padding-left: 50px;
+    margin-top: auto;
+}
+
+#welcome-message {
+    display: flex;
+    background-color: aqua;
+    padding-top: 50px;
+    text-align:center;
+    vertical-align: middle;
+
+}
+
+#first-content {
+    display: flex;
+    background-color: rgb(208, 229, 253);
+    height: 150px;
+    padding-top: 50px;/*top-nav高度*/
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+#second-title {
+    margin: 10px;
+    font-size: 20px;
+}
+
+#content-box{
+    display: flex;
+    margin:auto;
+    flex-wrap: wrap;/*多行,預設:不斷行*/
+    flex-direction: row;
+    max-width: 1200px;
+}
+
+#second-content{
+    text-align: center;
+    vertical-align: middle;
+    margin-left: 10%;
+    margin-right:10%;
+}
+
+#action-btn{
+    background-color: rgb(219, 231, 255);
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 8px 10px 8px;
+    border: 1px none rgb(255,255,255);
+    border-radius: 30%;
+}
+
+#action-btn:hover{
+    background-color: rgb(145, 165, 254);
+    cursor:pointer
+}
+
+#third-content{
+    text-align: center;
+}
+
+.flex-container {
+    display:flex;
+    justify-content: space-between;/*平均分配寬度和間距 第一項和最後一項貼齊邊緣*/
+    flex-direction: row;/*左至右橫向排列*/
+    padding-top: 8px;
+}
+
+.right-flex {
+    display: flex;
+    flex-direction: row;
+    margin-top: auto;
+}
+
+.nav-item {
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.content-item{
+    background-color:rgb(161, 180, 201);
+    flex-grow:1;
+    flex-basis:40%;
+    height:100px;
+    margin: 1%;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* .flex-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 8px;
+    padding-left: 30px;
+    padding-right: 50px;
+}
+
+.flex-container-2{
+    display: flex;
+    flex-direction: row;
+}
+
+.right-flex{
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: auto;
+}
+
+.nav-item{
+    margin-left:15px;
+} */
+
