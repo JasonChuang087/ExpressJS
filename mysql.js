@@ -13,9 +13,9 @@ const con = mysql.createConnection({
     database: "test"
 });
 
-let result = function( uid ) {
+let result = function( uid,err ) {
     return new Promise(( resolve, reject ) => {
-        con.connect(function(err) {
+        // con.connect(function(err) {
         if (err) {
           reject( err )
         } else {
@@ -27,17 +27,19 @@ let result = function( uid ) {
             }
           })
         }
-      })
+    //   })
     })
 }
 
 
-app.get('/user/:id', async function(req, res) { 
+app.get('/user/:id', function(req, res) { 
     console.log('ID:', req.params.id);
     const uid = req.params.id;
-    const data = await result(uid);
-    console.log(data[0]);
-    res.json({ user: data[0].name });
+    con.connect(async function(err) {
+        const data = await result(uid,err);
+        console.log(data[0]);
+        res.json({ user: data[0].name });
+    });
 })
 
 app.all('*',(req,res)=>{
