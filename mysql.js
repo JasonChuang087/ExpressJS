@@ -25,10 +25,12 @@ app.get('/user/:id', function(req, res) {
                     console.log(err);
                 }
                 const data = rows;
-                console.log(data);
-            } )
+                console.log(data[0]);
+                res.json({ user: data[0].name });
+            })
         }
     });
+    con.end();
 })
 
 app.all('*',(req,res)=>{
