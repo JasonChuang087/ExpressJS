@@ -13,13 +13,13 @@ const con = mysql.createConnection({
     database: "test"
 });
 
-let result = function( sql, uid ) {
+let result = function( uid ) {
     return new Promise(( resolve, reject ) => {
         con.connect(function(err) {
         if (err) {
           reject( err )
         } else {
-            con.query(sql, uid, (err, rows) => {
+            con.query("SELECT * FROM users WHERE id=?", uid, (err, rows) => {
             if ( err ) {
                 reject( err )
             } else {
@@ -35,8 +35,7 @@ let result = function( sql, uid ) {
 app.get('/user/:id', async function(req, res) { 
     console.log('ID:', req.params.id);
     const uid = req.params.id;
-    const query = "SELECT * FROM users WHERE id=?";
-    const data = await result(uid,query);
+    const data = await result(uid);
     console.log(data[0]);
     res.json({ user: data[0].name });
 })
