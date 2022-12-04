@@ -12,25 +12,43 @@ const con = mysql.createConnection({
     password: "password",
     database: "test"
 });
-  
-app.get('/user/:id', function(req, res) { 
+
+function sendRequest(){
+    return new Promise(function(resolve,reject){
+        setTimeout(function(){
+            resolve("John");
+            reject("500 error");
+        },2000);
+    });
+}
+
+let result = function( sql, uid ) {
+    return new Promise(( resolve, reject ) => {
+        con.connect(function(err) {
+        if (err) {
+          reject( err )
+        } else {
+            con.query(sql, uid, (err, rows) => {
+            if ( err ) {
+                reject( err )
+            } else {
+                resolve( rows )
+            }
+            con.release()
+          })
+        }
+      })
+    })
+}
+
+
+app.get('/user/:id', async function(req, res) { 
     console.log('ID:', req.params.id);
     const uid = req.params.id;
-    con.connect(function(err) {
-        console.log('connect');
-        if (err) throw err;
-        else{
-            con.query("SELECT * FROM users WHERE id=?",uid, function(err,rows){
-                if(err){
-                    console.log(err);
-                }
-                const data = rows;
-                console.log(data[0]);
-                res.json({ user: data[0].name });
-            })
-        }
-    });
-    con.end();
+    const query = "SELECT * FROM users WHERE id=?";
+    const data = await result(uid,query);
+    console.log(data[0]);
+    res.json({ user: data[0].name });
 })
 
 app.all('*',(req,res)=>{
