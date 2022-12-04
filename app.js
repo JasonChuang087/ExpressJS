@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-const port = process.env.PORT || 80
+const port = process.env.PORT || 3000
 
 // 設定靜態資源 or middleware 
 app.use(express.static('./static'))
