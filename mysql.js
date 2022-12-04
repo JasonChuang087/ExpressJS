@@ -2,15 +2,15 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const port = process.env.PORT || 3000
-
 // 設定靜態資源 or middleware 
 app.use(express.static('./static'))
 const mysql = require('mysql');
+
 const con = mysql.createConnection({
     host: "localhost",
     user: "user",
     password: "password",
-    database: "test"
+    database: "test",
 });
 
 let result = function( uid,err ) {
@@ -30,7 +30,6 @@ let result = function( uid,err ) {
     //   })
     })
 }
-
 
 app.get('/user/:id', function(req, res) { 
     console.log('ID:', req.params.id);
