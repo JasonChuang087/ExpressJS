@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 80
 
 // 設定靜態資源 or middleware 
 app.use(express.static('./static'))
@@ -17,6 +17,10 @@ app.get('/hello',(req,res)=>{
 
 app.get('/user/',(req,res)=>{
     res.status(200).send('Hello world')
+})
+
+app.get('/user/:id', async function(req, res) { 
+  console.log('ID:', req.params.id);
 })
 
 app.all('*',(req,res)=>{
