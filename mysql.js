@@ -13,15 +13,6 @@ const con = mysql.createConnection({
     database: "test"
 });
 
-function sendRequest(){
-    return new Promise(function(resolve,reject){
-        setTimeout(function(){
-            resolve("John");
-            reject("500 error");
-        },2000);
-    });
-}
-
 let result = function( sql, uid ) {
     return new Promise(( resolve, reject ) => {
         con.connect(function(err) {
@@ -34,7 +25,6 @@ let result = function( sql, uid ) {
             } else {
                 resolve( rows )
             }
-            con.release()
           })
         }
       })
