@@ -41,6 +41,10 @@ let result = function( uid ) {
     })
 }
 
+app.get('/',(req,res)=>{
+    res.sendFile(path.resolve(__dirname,'./index.html'))
+})
+
 app.get('/hello',(req,res)=>{
     res.status(200).send('Hello world')
 })
