@@ -28,7 +28,7 @@ let result = function( uid ) {
                 connection.query( "SELECT * FROM users WHERE id=?",uid, (err, rows) => {
                     // 使用連線查詢完資料
                     if ( err ) {
-                        reject( err )
+                        reject( [{name : "id not found"}] )
                     } else {
                         resolve( rows )
                     }
